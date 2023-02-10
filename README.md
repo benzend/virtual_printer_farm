@@ -44,7 +44,7 @@ Returns an array of printer objects `[{ "id": str(uuid), "port": int }]`
 
 Returns a printer object `{ "id": str(uuid), "port": int }`
 
-### Development
+## Development
 
 Python and FastAPI with some OctoPrint knowledge can go a long way here.
 
