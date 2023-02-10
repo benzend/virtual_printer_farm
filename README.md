@@ -21,7 +21,7 @@ python subprocess to target OctoPrint and create a virtual printer while also ha
 
 ## How Will I Be Able to Use it?
 
-You could either run this locally or create your own server that you could run this on.
+You could either run this locally or create your own server.
 
 ## API Endpoints
 
