@@ -1,0 +1,12 @@
+printers:
+- id: 3f4fca55-6b4c-42f8-873f-b11e585796b6
+  port: 3000
+- id: 6f0eff8e-6791-40e2-9bf3-bc5fc0235105
+  port: 3001
+- id: dfcd901c-22aa-42dd-8c42-b34c58c55ccf
+  port: 3002
+- id: b86ad02f-a309-4fc7-a747-267f397b9812
+  port: 3003
+- id: 732c44f1-d9e4-430c-bcb5-09a96655e37e
+  port: 3004
+printers_count: 5
