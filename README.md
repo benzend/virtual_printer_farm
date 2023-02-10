@@ -31,7 +31,7 @@ Creates a printer and generates a UUID and a port location.
 
 You can append an optional port location like so: `{ "port": 3000 }` into the body of the request.
 
-_Missing Functionality_
+__Missing Functionality__
 
 Needs to be able to create an OctoPrint instance, some of this is already written - but needs
 configurating.
@@ -52,7 +52,7 @@ Pipenv is also recommended as it is what's used here.
 
 OctoPrint is a big repo, so it is left out of the current repo for minimalism.
 
-_Steps_
+__Steps__
 
 - Install Python 3.10 (I currently use [pyenv](https://github.com/pyenv/pyenv) to manage my python versions)
 - Install [Pipenv](https://pipenv.pypa.io/en/latest/)
@@ -64,13 +64,13 @@ Once you have those things installed:
 
 This should put you in the environment with all the other needed dependencies like FastAPI and yaaml.
 
-_You'll also need to set up OctoPrint_
+__You'll also need to set up OctoPrint__
 
 This is a bigger task in itself.
 
 You'll need to follow through this official documentation [here](https://docs.octoprint.org/en/master/development/environment.html) to get OctoPrint onto your system.
 
-_To run the application_
+__To run the application__
 
 - Run `uvicorn main:app --reload`
 
