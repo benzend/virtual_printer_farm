@@ -1,6 +1,6 @@
 # Virtual Printer Farm
 
-An OctoPrint based virtual printer farm to help with development with OctoPrint based printers
+An [OctoPrint](https://octoprint.org/) virtual printer CLI management system to help with development with OctoPrint based printers.
 
 ## Why Should I Care?
 
@@ -10,59 +10,53 @@ process much easier.
 
 ## What Is This?
 
-This is an API that consists of simple endpoints that help you manage your virtual printer farm.
+This is a CLI that consists of simple endpoints that help you manage your virtual printer farm.
 
 ## How Do I Use It?
 
-There are currently some heavy needed functionality to be implemented in this system.
+Currently, you can't.
 
-One main thing that I do not have familiarity with is being able to create a printer using
-python subprocess to target OctoPrint and create a virtual printer while also having it run.
+There are some heavy needed functionality to be implemented in this system before it can be used.
 
 ## How Will I Be Able to Use it?
 
 You could either run this locally or create your own server.
 
-## API Endpoints
+## CLI Commands
 
-### POST /printers
+### create
 
 Creates a printer and generates a UUID and a port location.
 
-You can append an optional port location like so: `{ "port": 3000 }` into the body of the request.
+You can append an optional port location like so: `--port=3001` into the request.
 
 __Missing Functionality__
 
 Needs to be able to create an OctoPrint instance, some of this is already written - but needs
 configurating.
 
-### GET /printers
+### get --all (TODO)
 
-Returns an array of printer objects `[{ "id": str(uuid), "port": int }]`
+Returns a json array of printer objects `[{ "id": String, "port": i32 }]`
 
-### GET /printers/:id
+### get --port
 
-Returns a printer object `{ "id": str(uuid), "port": int }`
+Returns a printer json object `{ "id": String, "port": i32 }`
 
 ## Development
 
-Python and FastAPI with some OctoPrint knowledge can go a long way here.
+Rust with some OctoPrint knowledge can go a long way here.
 
-Pipenv is also recommended as it is what's used here.
-
-OctoPrint is a big repo, so it is left out of the current repo for minimalism.
+OctoPrint is a big repo, so it is left out of the current repo for staying minimalistic. Might add it to the Dockerfile for easy setup.
 
 __Steps__
 
-- Install Python 3.10 (I currently use [pyenv](https://github.com/pyenv/pyenv) to manage my python versions)
-- Install [Pipenv](https://pipenv.pypa.io/en/latest/)
+- Install the latest Rust version using [Rustup](https://rustup.rs/)
 - Read up on [OctoPrint documentation](https://docs.octoprint.org/en/master/)
 
 Once you have those things installed:
 
-- Run `pipenv shell`
-
-This should put you in the environment with all the other needed dependencies like FastAPI and yaaml.
+- Run `cargo build`
 
 __You'll also need to set up OctoPrint__
 
@@ -72,7 +66,5 @@ You'll need to follow through this official documentation [here](https://docs.oc
 
 __To run the application__
 
-- Run `uvicorn main:app --reload`
-
-`uvicorn main:app` targets the `main.py` file and runs it.
-`--reload` watches for changes in the file
+- Run `cargo run -- <commands>`
+- To see command list run `cargo run -- --help`
