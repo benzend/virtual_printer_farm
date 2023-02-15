@@ -72,4 +72,8 @@ fn setup_db_client() -> Result<Client, Box<dyn std::error::Error>> {
     Ok(client)
 }
 
-
+// * The reference python script we will need for creating virtual printers
+// popen = subprocess.Popen([
+//     "./OctoPrint/venv/bin/activate", "-c",
+//     "octoprint", "serve", "--port='{}'".format(item.port)
+// ], stdout=subprocess.PIPE, shell=True)
