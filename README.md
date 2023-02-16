@@ -52,6 +52,7 @@ OctoPrint is a big repo, so it is left out of the current repo for staying minim
 __Steps__
 
 - Install the latest Rust version using [Rustup](https://rustup.rs/)
+- Install a local instance of [postgres](https://www.postgresql.org/) either on your own or use Docker compose to set this up for you
 - Read up on [OctoPrint documentation](https://docs.octoprint.org/en/master/)
 
 Once you have those things installed:
