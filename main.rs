@@ -33,8 +33,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     match &cli.command {
         Some(Commands::Create) => {
             client.execute(
-                "INSERT INTO printer (port) VALUE ($1)",
-                &[&port]
+                "INSERT INTO printer (port) VALUES ($1)",
+                &[&port.to_string()]
             )?;
             println!("printer created");
             Ok(())
@@ -44,30 +44,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 fn setup_db_client() -> Result<Client, Box<dyn std::error::Error>> {
-    let mut client = Client::connect("host=localhost user=postgres", NoTls)?;
+    let mut client = Client::connect("host=localhost user=postgres password=postgres", NoTls)?;
 
-    let printers_exist_query = client.query("
-        SELECT_EXISTS (
-            SELECT FROM
-                pg_tables
-            WHERE
-                schemaname = 'public' AND
-                tablename = 'printer'
+    client.batch_execute("
+        CREATE TABLE IF NOT EXISTS printer (
+            id    SERIAL PRIMARY KEY,
+            port  TEXT NOT NULL
         )
-    ", &[])?;
-
-    let mut printers_exist = false;
-    for row in printers_exist_query {
-        printers_exist = row.get(0);
-    }
-    if !printers_exist {
-        client.batch_execute("
-            CREATE TABLE printer (
-                id SERIAL PRIMARY KEY,
-                port TEXT NOT NULL,
-            )
-        ")?;
-    }
+    ")?;
 
     Ok(client)
 }
