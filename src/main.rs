@@ -15,6 +15,7 @@ struct Cli {
 #[derive(Subcommand)]
 enum Commands {
     Create,
+    List,
 }
 
 struct Ctx {
@@ -47,8 +48,22 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         Some(Commands::Create) => {
             handle_create_printer(&port, &mut ctx)
         },
+        Some(Commands::List) => {
+            handle_list_printers(&mut ctx)
+        },
         _ => panic!("not a valid command")
     }
+}
+
+fn handle_list_printers(ctx: &mut Ctx) -> Result<(), Box<dyn std::error::Error>> {
+    let query = ctx.db_client.query("SELECT * FROM printer", &[])?;
+
+    for row in query {
+        let data: String = row.get(0);
+        println!("{}", data);
+    }
+
+    Ok(())
 }
 
 fn handle_create_printer(port: &i64, ctx: &mut Ctx) -> Result<(), Box<dyn std::error::Error>> {
